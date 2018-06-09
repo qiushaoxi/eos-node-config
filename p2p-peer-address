@@ -1,0 +1,16 @@
+p2p-peer-address = fullnode.eoslaomao.com:443
+p2p-peer-address = 13.230.31.188:50076
+p2p-peer-address = bpt6.eosbinxin.com:10028
+p2p-peer-address = peering2.mainnet.eosasia.one:80
+p2p-peer-address = 52.198.213.109:23456
+p2p-peer-address = 18.191.92.249:9876
+p2p-peer-address = 169.56.147.79:9888
+p2p-peer-address = boot.eostitan.com:9876
+p2p-peer-address = 161.117.9.8:9376
+p2p-peer-address = 52.77.224.13:19876
+p2p-peer-address = 54.95.202.14:9876
+p2p-peer-address = m.jeda.one:3322
+p2p-peer-address=172.30.100.80:23456
+p2p-peer-address=172.30.102.105:23456
+p2p-peer-address=192.168.66.24:50076
+p2p-peer-address=181.0.1.80:8080
