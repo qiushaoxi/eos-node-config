@@ -52,7 +52,8 @@ echo "docker rm -f fullnode-$stage_name
        /opt/eosio/bin/nodeos --data-dir=/data \
                              --config-dir=/etc/nodeos \
                              --delete-all-blocks \
-                             --genesis-json=/etc/nodeos/genesis.json " > fullnode/join.sh
+                             --genesis-json=/etc/nodeos/genesis.json \
+                            --delete-all-blocks " > fullnode/join.sh
 
 echo "docker stop fullnode-$stage_name
     docker rm -f fullnode-$stage_name
@@ -69,7 +70,8 @@ echo "docker run -ti --detach --name bpnode-$stage_name \
        $docker_tag \
        /opt/eosio/bin/nodeos --data-dir=/data \
                              --config-dir=/etc/nodeos \
-                             --genesis-json=/etc/nodeos/genesis.json" > join.sh
+                             --genesis-json=/etc/nodeos/genesis.json \
+                             --delete-all-blocks" > join.sh
 
 echo "docker stop bpnode-$stage_name
     docker rm -f bpnode-$stage_name
