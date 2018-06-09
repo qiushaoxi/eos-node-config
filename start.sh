@@ -23,10 +23,6 @@ docker -H $fullnode3_ip:5555 rm fullnode-$stage_name || true
 echo "Copying base config"
 cp base_config.ini config.ini
 
-
-cat p2p-peer-address >> config.ini
-echo "plugin = eosio::producer_api_plugin" >> config.ini
-
 # add none bp fullnode
 rm -rf fullnode
 mkdir fullnode
