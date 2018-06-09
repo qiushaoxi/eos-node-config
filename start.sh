@@ -1,3 +1,9 @@
+# read key
+echo "publickKey:"
+read publickKey
+echo "privateKey:"
+read privateKey
+
 echo "Load env config"
 source set-env.sh
 
@@ -32,12 +38,6 @@ echo "p2p-peer-address = $fullnode1_ip:$p2p_port" >> config.ini
 echo "p2p-peer-address = $fullnode2_ip:$p2p_port" >> config.ini
 echo "p2p-peer-address = $fullnode3_ip:$p2p_port" >> config.ini
 cp config.ini fullnode/config.ini
-
-# read key
-echo "publickKey:"
-read publickKey
-echo "privateKey:"
-read privateKey
 
 echo "producer-name = eosecosystem" >> config.ini
 echo "private-key = [\"$publickKey\",\"$privateKey\"]" >> config.ini
