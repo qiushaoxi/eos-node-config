@@ -41,7 +41,8 @@ echo "p2p-peer-address = $fullnode3_ip:$p2p_port" >> config.ini
 cp config.ini fullnode/config.ini
 
 echo "producer-name = eosecosystem" >> config.ini
-echo "private-key = [\"$publickKey\",\"$privateKey\"]" >> config.ini
+echo "signature-provider=$publickKey=KEY$privateKey">> config.ini
+# echo "private-key = [\"$publickKey\",\"$privateKey\"]" >> config.ini
 echo "plugin = eosio::producer_api_plugin" >> config.ini
 
 # add restart and join scripte
