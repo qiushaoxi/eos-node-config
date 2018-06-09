@@ -128,7 +128,7 @@ echo ""
 echo "Running 'fullnode3' through Docker."
 docker -H $fullnode3_ip:5555 run -ti --detach --name fullnode-$stage_name \
        -v $eos_config_dir/$stage_name:/etc/nodeos -v $eos_data_dir/$stage_name:/data \
-       -p $http_port:8888 -p $fp2p_port:9876 \
+       -p $http_port:8888 -p $p2p_port:9876 \
        $docker_tag \
        /opt/eosio/bin/nodeos --data-dir=/data \
                              --config-dir=/etc/nodeos \
