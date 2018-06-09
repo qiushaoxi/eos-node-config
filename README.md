@@ -14,4 +14,4 @@ publish fullnode to internet.
 
 
 ## docker
-docker build -t qiushaoxi/eosio:v1.0.0 --build-arg branch=v1.0.0  --build-arg symbol=EOS .
+docker build -t qiushaoxi/eos-mainnet:v1.0.2.2 --build-arg branch=mainnet-1.0.2.2 --build-arg symbol=EOS .
