@@ -13,3 +13,5 @@ export fullnode3_username=ubuntu
 export eos_data_dir=/data/boot/data
 export eos_config_dir=/data/boot/config
 export docker_tag=
+export publickKey=
+export privateKey=

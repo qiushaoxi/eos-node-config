@@ -1,9 +1,3 @@
-# read key
-echo "publickKey:"
-read publickKey
-echo "privateKey:"
-read privateKey
-
 echo "Load env config"
 source set-env.sh
 
