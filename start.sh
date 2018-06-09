@@ -112,8 +112,7 @@ docker -H $fullnode1_ip:5555 run -ti --detach --name fullnode-$stage_name \
        /opt/eosio/bin/nodeos --data-dir=/data \
                              --config-dir=/etc/nodeos \
                              --delete-all-blocks \
-                             --genesis-json=/etc/nodeos/genesis.json \
-                             --delete-all-blocks 
+                             --genesis-json=/etc/nodeos/genesis.json 
 echo ""
 echo "Running 'fullnode2' through Docker."
 docker -H $fullnode2_ip:5555 run -ti --detach --name fullnode-$stage_name \
@@ -123,8 +122,7 @@ docker -H $fullnode2_ip:5555 run -ti --detach --name fullnode-$stage_name \
        /opt/eosio/bin/nodeos --data-dir=/data \
                              --config-dir=/etc/nodeos \
                              --delete-all-blocks \
-                             --genesis-json=/etc/nodeos/genesis.json \
-                             --delete-all-blocks 
+                             --genesis-json=/etc/nodeos/genesis.json 
 echo ""
 echo "Running 'fullnode3' through Docker."
 docker -H $fullnode3_ip:5555 run -ti --detach --name fullnode-$stage_name \
@@ -134,8 +132,7 @@ docker -H $fullnode3_ip:5555 run -ti --detach --name fullnode-$stage_name \
        /opt/eosio/bin/nodeos --data-dir=/data \
                              --config-dir=/etc/nodeos \
                              --delete-all-blocks \
-                             --genesis-json=/etc/nodeos/genesis.json \
-                             --delete-all-blocks 
+                             --genesis-json=/etc/nodeos/genesis.json 
 echo ""
 
 echo "Running 'nodeos' through Docker."
@@ -146,8 +143,7 @@ docker run -ti --detach --name bpnode-$stage_name \
        /opt/eosio/bin/nodeos --data-dir=/data \
                              --config-dir=/etc/nodeos \
                              --delete-all-blocks \
-                             --genesis-json=/etc/nodeos/genesis.json \
-                             --delete-all-blocks 
+                             --genesis-json=/etc/nodeos/genesis.json 
 
 
 echo ""
