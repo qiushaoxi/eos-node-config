@@ -7,16 +7,16 @@ read privateKey
 echo "Load env config"
 source set-env.sh
 
-docker kill bpnode-$stage_name || true
+docker stop bpnode-$stage_name || true
 docker rm bpnode-$stage_name || true
 
-docker -H $fullnode1_ip:5555 kill fullnode-$stage_name || true
+docker -H $fullnode1_ip:5555 stop fullnode-$stage_name || true
 docker -H $fullnode1_ip:5555 rm fullnode-$stage_name || true
 
-docker -H $fullnode2_ip:5555 kill fullnode-$stage_name || true
+docker -H $fullnode2_ip:5555 stop fullnode-$stage_name || true
 docker -H $fullnode2_ip:5555 rm fullnode-$stage_name || true
 
-docker -H $fullnode3_ip:5555 kill fullnode-$stage_name || true
+docker -H $fullnode3_ip:5555 stop fullnode-$stage_name || true
 docker -H $fullnode3_ip:5555 rm fullnode-$stage_name || true
 
 
@@ -108,9 +108,7 @@ docker -H $fullnode1_ip:5555 run -ti --detach --name fullnode-$stage_name \
        -p $http_port:8888 -p $p2p_port:9876 \
        $docker_tag \
        /opt/eosio/bin/nodeos --data-dir=/data \
-                             --config-dir=/etc/nodeos \
-                             --delete-all-blocks \
-                             --genesis-json=/etc/nodeos/genesis.json 
+                             --config-dir=/etc/nodeos 
 echo ""
 echo "Running 'fullnode2' through Docker."
 docker -H $fullnode2_ip:5555 run -ti --detach --name fullnode-$stage_name \
@@ -118,9 +116,7 @@ docker -H $fullnode2_ip:5555 run -ti --detach --name fullnode-$stage_name \
        -p $http_port:8888 -p $p2p_port:9876 \
        $docker_tag \
        /opt/eosio/bin/nodeos --data-dir=/data \
-                             --config-dir=/etc/nodeos \
-                             --delete-all-blocks \
-                             --genesis-json=/etc/nodeos/genesis.json 
+                             --config-dir=/etc/nodeos 
 echo ""
 echo "Running 'fullnode3' through Docker."
 docker -H $fullnode3_ip:5555 run -ti --detach --name fullnode-$stage_name \
@@ -129,8 +125,7 @@ docker -H $fullnode3_ip:5555 run -ti --detach --name fullnode-$stage_name \
        $docker_tag \
        /opt/eosio/bin/nodeos --data-dir=/data \
                              --config-dir=/etc/nodeos \
-                             --delete-all-blocks \
-                             --genesis-json=/etc/nodeos/genesis.json 
+                             --delete-all-blocks 
 echo ""
 
 echo "Running 'nodeos' through Docker."
@@ -139,9 +134,7 @@ docker run -ti --detach --name bpnode-$stage_name \
        -p $http_port:8888 -p $p2p_port:9876 \
        $docker_tag \
        /opt/eosio/bin/nodeos --data-dir=/data \
-                             --config-dir=/etc/nodeos \
-                             --delete-all-blocks \
-                             --genesis-json=/etc/nodeos/genesis.json 
+                             --config-dir=/etc/nodeos 
 
 
 echo ""
