@@ -33,6 +33,7 @@ mkdir fullnode
 cp base_config.ini fullnode/config.ini
 cp genesis.json fullnode/genesis.json
 cat p2p-peer-address >> config.ini
+echo "" >> config.ini
 echo "p2p-peer-address = $bpnode_ip:$p2p_port" >> config.ini
 echo "p2p-peer-address = $fullnode1_ip:$p2p_port" >> config.ini
 echo "p2p-peer-address = $fullnode2_ip:$p2p_port" >> config.ini
