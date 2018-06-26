@@ -14,27 +14,8 @@ docker -H $fullnode3_ip:5555 stop fullnode-$stage_name || true
 docker -H $fullnode3_ip:5555 rm fullnode-$stage_name || true
 
 
-echo "Copying base config"
-cp base_config.ini config.ini
-
-# add none bp fullnode
-rm -rf fullnode
-mkdir fullnode
-cp base_config.ini fullnode/config.ini
-cp genesis.json fullnode/genesis.json
-cat p2p-peer-address >> config.ini
-echo "" >> config.ini
-echo "p2p-peer-address = $bpnode_ip:$p2p_port" >> config.ini
-echo "p2p-peer-address = $fullnode1_ip:$p2p_port" >> config.ini
-echo "p2p-peer-address = $fullnode2_ip:$p2p_port" >> config.ini
-echo "p2p-peer-address = $fullnode3_ip:$p2p_port" >> config.ini
-cp config.ini fullnode/config.ini
-echo "access-control-allow-origin = *" >> fullnode/config.ini
-
-echo "producer-name = eosecosystem" >> config.ini
-echo "signature-provider=$publickKey=KEY:$privateKey">> config.ini
-# echo "private-key = [\"$publickKey\",\"$privateKey\"]" >> config.ini
-echo "plugin = eosio::producer_api_plugin" >> config.ini
+rm -rf script
+mkdir script
 
 # add restart and join scripte
 echo "docker rm -f fullnode-$stage_name
@@ -46,7 +27,7 @@ echo "docker rm -f fullnode-$stage_name
                              --config-dir=/etc/nodeos \
                              --delete-all-blocks \
                              --genesis-json=/etc/nodeos/genesis.json \
-                            --delete-all-blocks " > fullnode/join.sh
+                            --delete-all-blocks " > script/join.sh
 
 echo "docker stop fullnode-$stage_name
     docker rm -f fullnode-$stage_name
@@ -55,7 +36,7 @@ echo "docker stop fullnode-$stage_name
        -p $http_port:8888 -p $p2p_port:9876 \
        $docker_tag \
        /opt/eosio/bin/nodeos --data-dir=/data \
-                             --config-dir=/etc/nodeos " > fullnode/restart.sh
+                             --config-dir=/etc/nodeos " > script/restart.sh
 
 echo "docker run -ti --detach --name bpnode-$stage_name \
        -v `pwd`:/etc/nodeos -v $eos_data_dir/$stage_name:/data \
@@ -79,19 +60,19 @@ echo "docker stop bpnode-$stage_name
 # sftp put config file to fullnode
 sftp $fullnode1_username@$fullnode1_ip << EOF
 mkdir $eos_config_dir/$stage_name
-put `pwd`/fullnode/* $eos_config_dir/$stage_name
+put `pwd`/script/* $eos_config_dir/$stage_name
 quit
 EOF
 
 sftp $fullnode2_username@$fullnode2_ip << EOF
 mkdir $eos_config_dir/$stage_name
-put `pwd`/fullnode/* $eos_config_dir/$stage_name
+put `pwd`/script/* $eos_config_dir/$stage_name
 quit
 EOF
 
 sftp $fullnode3_username@$fullnode3_ip << EOF
 mkdir $eos_config_dir/$stage_name
-put `pwd`/fullnode/* $eos_config_dir/$stage_name
+put `pwd`/script/* $eos_config_dir/$stage_name
 quit
 EOF
 
